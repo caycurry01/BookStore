@@ -1,20 +1,20 @@
 public class Items {
 
     enum ItemType {
-        BOOKS,
-        CDS,
-        DVDS,
+        Book,
+        CD,
+        DVD,
     }
 
-    public Items(String itemName, double itemPrice, ItemType itemType) {
+    public Items(String itemName, ItemType itemType) {
         setName(itemName);
         setType(itemType);
         switch (itemType) {
-            case BOOKS:
+            case Book:
                 setPrice(10.00);
-            case CDS:
+            case CD:
                 setPrice(15.00);
-            case DVDS:
+            case DVD:
                 setPrice(12.00);
             default:
                 System.out.println("Invalid Type");

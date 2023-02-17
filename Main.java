@@ -3,30 +3,28 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static ArrayList<Customer> customer = new ArrayList<>();
-    public static ArrayList<Items> item = new ArrayList<>();
+    public static ArrayList<Customer> customers = new ArrayList<>();
+    public static ArrayList<Items> items = new ArrayList<>();
 
     public static void createCustomer() {
-
+        Customer user1 = new Customer("kelvin123", Customer.CustomerLevel.REGULAR);
+        Customer user2 = new Customer("cindy345", Customer.CustomerLevel.PREMIUM);
+        Customer user3 = new Customer("cayla567", Customer.CustomerLevel.PREMIUM);
+        customers.add(user1);
+        customers.add(user2);
+        customers.add(user3);
     }
 
     public static void createItems() {
-
+        Items item1 = new Items("Pride and Prejudice", Items.ItemType.Book);
+        Items item2 = new Items("Titanic", Items.ItemType.CD);
+        Items item3 = new Items("Beauty and the Beast", Items.ItemType.DVD);
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
     }
 
     public static void main(String[] args) {
-        // createCustomer();
-        // createItems();
-        // Scanner scnr = new Scanner(System.in);
-
-        // int choice = 0;
-
-        // System.out.println("*************************");
-        // System.out.println("Welcome to the Bookstore!");
-        // System.out.println("*************************");
-
-        // System.out.println("Please choose on of the following options below: ");
-        // System.out.println("\t1) View membership");
 
     }
 
