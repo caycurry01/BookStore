@@ -1,8 +1,8 @@
 public class Customer {
 
     enum CustomerLevel {
-        REGULAR,
-        PREMIUM
+        Basic,
+        Premium
     }
 
     private String username;
@@ -11,9 +11,9 @@ public class Customer {
 
     public Customer(String username, CustomerLevel level) {
         switch (level) {
-            case REGULAR:
+            case Basic:
                 setSubscription(0.00);
-            case PREMIUM:
+            case Premium:
                 setSubscription(10.00);
             default:
                 System.out.println("Please Select a given Subscription");

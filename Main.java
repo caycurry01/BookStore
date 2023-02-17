@@ -7,9 +7,9 @@ public class Main {
     public static ArrayList<Items> items = new ArrayList<>();
 
     public static void createCustomer() {
-        Customer user1 = new Customer("kelvin123", Customer.CustomerLevel.REGULAR);
-        Customer user2 = new Customer("cindy345", Customer.CustomerLevel.PREMIUM);
-        Customer user3 = new Customer("cayla567", Customer.CustomerLevel.PREMIUM);
+        Customer user1 = new Customer("kelvin123", Customer.CustomerLevel.Basic);
+        Customer user2 = new Customer("cindy345", Customer.CustomerLevel.Premium);
+        Customer user3 = new Customer("cayla567", Customer.CustomerLevel.Premium);
         customers.add(user1);
         customers.add(user2);
         customers.add(user3);
