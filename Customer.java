@@ -10,14 +10,16 @@ public class Customer {
     private double subscriptionPrice;
     private String paymentMethod;
     private double balance;
-    private double monthlyFee;
+    private double cart;
 
 
-    public Customer(String username, CustomerLevel level, String paymentMethod, double balance) {
+    public Customer(String username, CustomerLevel level, String paymentMethod, double balance, double cart) {
         setUsername(username);
         setLevel(level);
         setPaymentMethod(paymentMethod);
         setBalance(balance);
+        setCart(cart);
+        
     }
     
 
@@ -45,11 +47,14 @@ public class Customer {
         return this.balance = (this.balance-10.00);
     }
 
+    public double getCart() {
+        return cart;
+    }
+
     public void setUsername(String name) {
         this.username = name;
     }
     
-
     public void setLevel(CustomerLevel level) {
         this.customerLevel = level;
         if (level == CustomerLevel.BASIC) {
@@ -73,7 +78,8 @@ public class Customer {
         this.balance = balance;
     }
     
-    public void setMonthlyFee(double monthlyFee) {
-        this.monthlyFee = monthlyFee;
+    public void setCart(double cart){
+        this.cart = cart;
     }
+
 }

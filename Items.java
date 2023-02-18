@@ -6,9 +6,16 @@ public class Items {
         DVD,
     }
 
-    public Items(String itemName, ItemType itemType) {
+    private String itemTitle;
+    private double itemPrice;
+    private ItemType itemType;
+    private int itemQuantity;
+
+    public Items(String itemName, ItemType itemType, int itemQuantity) {
         setName(itemName);
         setType(itemType);
+        setQuantity(itemQuantity);
+
         if(itemType == ItemType.Book){
             setPrice(25.00);
         }
@@ -24,9 +31,7 @@ public class Items {
         
     }
 
-    private String itemTitle;
-    private double itemPrice;
-    private ItemType itemType;
+    
 
     public String getName() {
         return itemTitle;
@@ -39,6 +44,10 @@ public class Items {
     public ItemType getType() {
         return itemType;
     }
+    
+    public int getitemQuantity() {
+        return itemQuantity;
+    }
 
     public void setName(String title) {
         this.itemTitle = title;
@@ -50,6 +59,10 @@ public class Items {
 
     public void setType(ItemType type) {
         this.itemType = type;
+    }
+
+    public void setQuantity (int itemQuantity){
+        this.itemQuantity = itemQuantity;
     }
 
 }

@@ -11,13 +11,13 @@ public class Main {
     public static int cart;
 
     public static void createCustomer() {
-        Customer user1 = new Customer("kelvin123", Customer.CustomerLevel.BASIC, "card", 100.0);
+        Customer user1 = new Customer("kelvin123", Customer.CustomerLevel.BASIC, "card", 100.0,0);
         customers.add(user1);
-        Customer user2 = new Customer("cindy345", Customer.CustomerLevel.BASIC, "cash", 50.00);
+        Customer user2 = new Customer("cindy345", Customer.CustomerLevel.BASIC, "cash", 50.00,0);
         customers.add(user2);
-        Customer user3 = new Customer("cayla567", Customer.CustomerLevel.PREMIUM, "card", 100.0);
+        Customer user3 = new Customer("cayla567", Customer.CustomerLevel.PREMIUM, "card", 100.0,0);
         customers.add(user3);
-        Customer user4 = new Customer("kevin494", Customer.CustomerLevel.PREMIUM, "cash", 60.00);
+        Customer user4 = new Customer("kevin494", Customer.CustomerLevel.PREMIUM, "cash", 60.00,0);
         customers.add(user4);
         
     }
@@ -36,9 +36,9 @@ public class Main {
 
 
     public static void createItems() {
-        Items item1 = new Items("Pride and Prejudice", Items.ItemType.Book);
-        Items item2 = new Items("Titanic", Items.ItemType.CD);
-        Items item3 = new Items("Beauty and the Beast", Items.ItemType.DVD);
+        Items item1 = new Items("Pride and Prejudice", Items.ItemType.Book,5);
+        Items item2 = new Items("Titanic", Items.ItemType.CD,10);
+        Items item3 = new Items("Beauty and the Beast", Items.ItemType.DVD,20);
         items.add(item1);
         items.add(item2);
         items.add(item3);
@@ -52,7 +52,7 @@ public class Main {
         System.out.println("Would you like to upgrade to our Premium membership? (y/n): ");
         String choice = scnr.nextLine();
         
-        Customer newCustomer = new Customer(username, Customer.CustomerLevel.BASIC, "none", 0.0);
+        Customer newCustomer = new Customer(username, Customer.CustomerLevel.BASIC, "none", 0.0,0);
         if (choice.equals("y")){
             newCustomer.setLevel(Customer.CustomerLevel.PREMIUM);
             System.out.println("Thank you for joining our Premium membership!");
@@ -126,11 +126,22 @@ public class Main {
         }
     }
 
+    public static void buyItems(){
+        System.out.println("\nWelcome to Cayla's Bookstore");
+        System.out.println("****************************\n");
+        System.out.println("We currently have Books, CDs, and DVDs. Below are the items we have in stock and quantity: ");
+        for(Items i : items){
+            System.out.println("\nTitle: " + i.getName() + "\nItem Type: " + i.getType() + "\nQuantity: " + i.getitemQuantity());
+        }
+        
+    }
+
     
 
 
     public static void main(String[] args) {
         createCustomer();
+        createItems();
 
         Scanner scnr = new Scanner(System.in);
         while (customers.size() != 0){
@@ -157,12 +168,17 @@ public class Main {
                     break;
                 }
             
-                
-                // String options = "1) See membership status\n" + "2) Change membership status\n" + "3) Check out";
-                // System.out.println(options);
             }
             else{
-                
+                String options = "1) Begin Shopping\n" + "2) Check out";
+                System.out.println(options);
+                option = scnr.nextInt();
+                if (option == 1){
+                    buyItems();
+                }
+                else{
+                    System.out.println("not working");
+                }
                 break;
             }
             
