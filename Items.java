@@ -9,16 +9,19 @@ public class Items {
     public Items(String itemName, ItemType itemType) {
         setName(itemName);
         setType(itemType);
-        switch (itemType) {
-            case Book:
-                setPrice(10.00);
-            case CD:
-                setPrice(15.00);
-            case DVD:
-                setPrice(12.00);
-            default:
-                System.out.println("Invalid Type");
+        if(itemType == ItemType.Book){
+            setPrice(25.00);
         }
+        else if (itemType == ItemType.CD){
+            setPrice(15.00);
+        }
+        else if (itemType == ItemType.DVD){
+            setPrice(12.00);
+        }
+        else{
+            System.out.println("Invalid Type");
+        }
+        
     }
 
     private String itemTitle;
@@ -38,15 +41,15 @@ public class Items {
     }
 
     public void setName(String title) {
-        itemTitle = title;
+        this.itemTitle = title;
     }
 
     public void setPrice(double price) {
-        itemPrice = price;
+        this.itemPrice = price;
     }
 
     public void setType(ItemType type) {
-        itemType = type;
+        this.itemType = type;
     }
 
 }
