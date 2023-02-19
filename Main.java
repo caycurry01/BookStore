@@ -9,7 +9,8 @@ public class Main {
     public static ArrayList<Items> items = new ArrayList<>();
     public static ArrayList<Items> cartItems = new ArrayList<>();
     public static Customer activeCustomer;
-    public static int cart;
+    public static double cartTotal;
+    public static double cartBalance;
 
     public static void createCustomer() {
         Customer user1 = new Customer("kelvin123", Customer.CustomerLevel.BASIC, "card", 100.0,0);
@@ -29,7 +30,8 @@ public class Main {
         String username = scnrr.nextLine();
         for (Customer i : customers){
             if (i.getUsername().equals(username)){
-                System.out.println("You have been logged in successfully. Your current membership monthly payment is: " + i.getSubcription());
+                System.out.println("You have been logged in successfully."+ " Your membership status is: " + i.getLevel() + " " + 
+                "\nYour current membership monthly payment is: " + i.getSubcription());
                 activeCustomer = i;
             }
         } 
@@ -99,7 +101,7 @@ public class Main {
             System.out.println("Yes you have, thank you, please continue shopping.");
         }
         else if (options.equals("n")){
-            System.out.println("It is now the first of the Month, we will now subtract the monthly payment from everyone's store credit.");
+            System.out.println("It is now the 1st of the Month, we will now subtract the monthly payment ($10.00) from everyone's store credit.");
             for(Customer i : customers){
                 if (i.getLevel().equals(Customer.CustomerLevel.PREMIUM)){
                     i.getMonthlyFee();
@@ -127,6 +129,29 @@ public class Main {
         }
     }
 
+    public static void subBalance(){
+        Scanner scnr = new Scanner(System.in);
+        String choice = scnr.nextLine();
+        if (choice.equals("y")) {
+            System.out.println("Please enter your username to access store credit: ");
+            String username = scnr.nextLine();
+            for (Customer i : customers) {
+                if (i.getUsername().equals(username)) {
+                    cartBalance = i.getBalance()-cartTotal;
+                    if (cartBalance > 0){
+                        System.out.println("Thank you for your purchase, your new balance is: $ " + cartBalance );
+                        break;
+                    }
+                    else{
+                        System.out.println("Insufficient Funds in store balance you owe: $ " + (cartBalance*-1));
+                        System.out.println("The rest of the money was taken from the card we have on file.");
+                    }
+                }
+            }
+
+        }
+    }
+
 
     public static void buyItems(){
         System.out.println("\nWelcome to Cayla's Bookstore");
@@ -141,13 +166,14 @@ public class Main {
             Scanner scnr = new Scanner(System.in);
             int option = scnr.nextInt();
             if (option == 1){
-                System.out.println("How many would you like to purchase? There are currently " + items.get(0).getitemQuantity() + " copies of " + items
+                System.out.println("This item is currently: $ "+items.get(0).getPrice()+"\nHow many would you like to purchase? There are currently " + items.get(0).getitemQuantity() + " copies of " + items
                         .get(0).getName()+ " in stock: ");
                 option = scnr.nextInt();
                 Items cartItem = new Items("Pride and Prejudice", Items.ItemType.Book, 0);
                 cartItem.setQuantity(option);
                 cartItems.add(cartItem);
                 items.get(0).setQuantity(items.get(0).getitemQuantity() - cartItems.get(0).getitemQuantity());
+
                 System.out.println("You now have " + cartItems.get(0).getitemQuantity() + " in your cart. There are now " + items
                         .get(0).getitemQuantity() + " left in stock.");
                 System.out.println("Would you like to continue shopping? y/n ");
@@ -161,7 +187,8 @@ public class Main {
                 
             }
             else if (option == 2){
-                System.out.println("How many would you like to purchase? There are currently "
+                System.out.println("This item is currently: $ " + items.get(1).getPrice()
+                        + "\nHow many would you like to purchase? There are currently "
                         + items.get(1).getitemQuantity() + " copies of " + items
                                 .get(1).getName()
                         + " in stock: ");
@@ -173,6 +200,7 @@ public class Main {
                 System.out.println(
                         "You now have " + cartItems.get(0).getitemQuantity() + " in your cart. There are now " + items
                                 .get(1).getitemQuantity() + " left in stock.");
+                                
                 System.out.println("Would you like to continue shopping? y/n ");
                 scnr.nextLine();
                 String answer = scnr.nextLine();
@@ -185,7 +213,8 @@ public class Main {
                 
             }
             else if (option == 3){
-                System.out.println("How many would you like to purchase? There are currently "
+                System.out.println("This item is currently: $ " + items.get(2).getPrice()
+                        + "\now many would you like to purchase? There are currently "
                         + items.get(2).getitemQuantity() + " copies of " + items
                                 .get(2).getName()
                         + " in stock: ");
@@ -218,6 +247,12 @@ public class Main {
         }
 
         
+    }
+    public static void checkout(){
+        for (Items i : cartItems){
+            cartTotal = cartTotal+(double)i.getitemQuantity() * i.getPrice();
+        }
+        System.out.println("Your cart totals to: " + " $ "+cartTotal);
     }
 
     public static void main(String[] args) {
@@ -256,14 +291,32 @@ public class Main {
                 option = scnr.nextInt();
                 if (option == 1){
                     buyItems();
+                    checkout();
                 }
                 else{
-                    System.out.println("not working");
-                }
-                break;
-            }
-            
+                    if (cartTotal==0){
+                        System.out.println("Your cart total is currently: " + cartTotal
+                                + "\nYou have not purchased any items yet. ");
+                    }
+                    else{
+                        System.out.println("Your cart total is currently: " + cartTotal);
+                        System.out.println("Would you like to pay with 1)store credit or pay through 2)external payment method? (please select 1 or 2 to complete transaction)");
+                        int answer = scnr.nextInt();
+                        if (answer == 1){
+                            subBalance();
+                        }
+                        else{
+                            System.out.println("The purchase has been charged to your external payment method.");
+                        }
+                        System.out.println("Have a nice day.");
+                        break;
+                    }
 
+                }
+
+                
+            }
+        
         }
 
     
