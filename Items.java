@@ -31,8 +31,6 @@ public class Items {
         
     }
 
-    
-
     public String getName() {
         return itemTitle;
     }
@@ -65,5 +63,4 @@ public class Items {
         this.itemQuantity = itemQuantity;
     }
     
-
 }

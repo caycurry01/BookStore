@@ -12,7 +12,6 @@ public class Customer {
     private double balance;
     private double cart;
 
-
     public Customer(String username, CustomerLevel level, String paymentMethod, double balance, double cart) {
         setUsername(username);
         setLevel(level);
@@ -21,7 +20,6 @@ public class Customer {
         setCart(cart);
         
     }
-    
 
     public String getUsername() {
         return username;

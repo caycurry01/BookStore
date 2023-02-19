@@ -37,7 +37,6 @@ public class Main {
         } 
     }
 
-
     public static void createItems() {
         Items item1 = new Items("Pride and Prejudice", Items.ItemType.Book,5);
         Items item2 = new Items("Titanic", Items.ItemType.CD,10);
@@ -89,7 +88,6 @@ public class Main {
 
         }
         activeCustomer = newCustomer;
-        
     }
 
     public static void monthlyFee(){
@@ -125,7 +123,6 @@ public class Main {
                     System.out.println(i.getBalance());
                 }
             }
-
         }
     }
 
@@ -148,10 +145,8 @@ public class Main {
                     }
                 }
             }
-
         }
     }
-
 
     public static void buyItems(){
         System.out.println("\nWelcome to Cayla's Bookstore");
@@ -183,9 +178,8 @@ public class Main {
                     System.out.println("Thank you for shopping with us. You will now be sent to your cart to pay for your items. ");
                     buying = false;
                 }
-                
-                
             }
+
             else if (option == 2){
                 System.out.println("This item is currently: $ " + items.get(1).getPrice()
                         + "\nHow many would you like to purchase? There are currently "
@@ -209,8 +203,7 @@ public class Main {
                             "Thank you for shopping with us. You will now be sent to your cart to pay for your items. ");
                     buying = false;
                 }
-                
-                
+                  
             }
             else if (option == 3){
                 System.out.println("This item is currently: $ " + items.get(2).getPrice()
@@ -243,11 +236,9 @@ public class Main {
             else{
                 System.out.println("Invalid option. Please choose again: ");
             }
-            
         }
-
-        
     }
+
     public static void checkout(){
         for (Items i : cartItems){
             cartTotal = cartTotal+(double)i.getitemQuantity() * i.getPrice();
@@ -311,15 +302,8 @@ public class Main {
                         System.out.println("Have a nice day.");
                         break;
                     }
-
-                }
-
-                
+                } 
             }
-        
         }
-
-    
     }
-
 }
