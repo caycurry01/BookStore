@@ -7,6 +7,7 @@ public class Main {
 
     public static ArrayList<Customer> customers = new ArrayList<>();
     public static ArrayList<Items> items = new ArrayList<>();
+    public static ArrayList<Items> cartItems = new ArrayList<>();
     public static Customer activeCustomer;
     public static int cart;
 
@@ -126,6 +127,7 @@ public class Main {
         }
     }
 
+
     public static void buyItems(){
         System.out.println("\nWelcome to Cayla's Bookstore");
         System.out.println("****************************\n");
@@ -133,11 +135,90 @@ public class Main {
         for(Items i : items){
             System.out.println("\nTitle: " + i.getName() + "\nItem Type: " + i.getType() + "\nQuantity: " + i.getitemQuantity());
         }
+        boolean buying = true;
+        while (buying == true){
+            System.out.println("\nWhich item would you like to buy? \n1) Pride and Prejudice(Book) \n2) Titanic(CD) \n3) Beauty and the Beast(DVD) \n4) Exit to Cart");
+            Scanner scnr = new Scanner(System.in);
+            int option = scnr.nextInt();
+            if (option == 1){
+                System.out.println("How many would you like to purchase? There are currently " + items.get(0).getitemQuantity() + " copies of " + items
+                        .get(0).getName()+ " in stock: ");
+                option = scnr.nextInt();
+                Items cartItem = new Items("Pride and Prejudice", Items.ItemType.Book, 0);
+                cartItem.setQuantity(option);
+                cartItems.add(cartItem);
+                items.get(0).setQuantity(items.get(0).getitemQuantity() - cartItems.get(0).getitemQuantity());
+                System.out.println("You now have " + cartItems.get(0).getitemQuantity() + " in your cart. There are now " + items
+                        .get(0).getitemQuantity() + " left in stock.");
+                System.out.println("Would you like to continue shopping? y/n ");
+                scnr.nextLine();
+                String answer = scnr.nextLine();
+                if (answer.equals("n")){
+                    System.out.println("Thank you for shopping with us. You will now be sent to your cart to pay for your items. ");
+                    buying = false;
+                }
+                
+                
+            }
+            else if (option == 2){
+                System.out.println("How many would you like to purchase? There are currently "
+                        + items.get(1).getitemQuantity() + " copies of " + items
+                                .get(1).getName()
+                        + " in stock: ");
+                option = scnr.nextInt();
+                Items cartItem = new Items("Titanic", Items.ItemType.CD, 0);
+                cartItem.setQuantity(option);
+                cartItems.add(cartItem);
+                items.get(1).setQuantity(items.get(1).getitemQuantity() - cartItems.get(0).getitemQuantity());
+                System.out.println(
+                        "You now have " + cartItems.get(0).getitemQuantity() + " in your cart. There are now " + items
+                                .get(1).getitemQuantity() + " left in stock.");
+                System.out.println("Would you like to continue shopping? y/n ");
+                scnr.nextLine();
+                String answer = scnr.nextLine();
+                if (answer.equals("n")) {
+                    System.out.println(
+                            "Thank you for shopping with us. You will now be sent to your cart to pay for your items. ");
+                    buying = false;
+                }
+                
+                
+            }
+            else if (option == 3){
+                System.out.println("How many would you like to purchase? There are currently "
+                        + items.get(2).getitemQuantity() + " copies of " + items
+                                .get(2).getName()
+                        + " in stock: ");
+                option = scnr.nextInt();
+                Items cartItem = new Items("Beauty and the Beast", Items.ItemType.DVD, 0);
+                cartItem.setQuantity(option);
+                cartItems.add(cartItem);
+                items.get(2).setQuantity(items.get(2).getitemQuantity() - cartItems.get(0).getitemQuantity());
+                System.out.println(
+                        "You now have " + cartItems.get(0).getitemQuantity() + " in your cart. There are now " + items
+                                .get(2).getitemQuantity() + " left in stock.");
+                System.out.println("Would you like to continue shopping? y/n ");
+                scnr.nextLine();
+                String answer = scnr.nextLine();
+                if (answer.equals("n")) {
+                    System.out.println(
+                            "Thank you for shopping with us. You will now be sent to view your cart and pay for your items. ");
+                    buying = false;
+                }
+                
+            }
+            else if (option == 4){
+                System.out.println("Thank you for shopping with us, you will now be set to view your cart and pay for your items.");
+                buying = false;
+            }
+            else{
+                System.out.println("Invalid option. Please choose again: ");
+            }
+            
+        }
+
         
     }
-
-    
-
 
     public static void main(String[] args) {
         createCustomer();
