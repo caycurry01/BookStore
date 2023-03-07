@@ -29,7 +29,7 @@ public class Main {
         System.out.println("Username: ");
         String username = scnrr.nextLine();
         for (Customer i : customers){
-            if (i.getUsername().equals(username)){
+            if (i.getUsername().equalsIgnoreCase(username)){
                 System.out.println("You have been logged in successfully."+ " Your membership status is: " + i.getLevel() + " " + 
                 "\nYour current membership monthly payment is: " + i.getSubcription());
                 activeCustomer = i;
@@ -119,7 +119,7 @@ public class Main {
             System.out.println("Please enter your username: ");
             String username = scnr.nextLine();
             for (Customer i : customers) {
-                if (i.getUsername().equals(username)) {
+                if (i.getUsername().equalsIgnoreCase(username)) {
                     System.out.println(i.getBalance());
                 }
             }
@@ -133,7 +133,7 @@ public class Main {
             System.out.println("Please enter your username to access store credit: ");
             String username = scnr.nextLine();
             for (Customer i : customers) {
-                if (i.getUsername().equals(username)) {
+                if (i.getUsername().equalsIgnoreCase(username)) {
                     cartBalance = i.getBalance()-cartTotal;
                     if (cartBalance > 0){
                         System.out.println("Thank you for your purchase, your new balance is: $ " + cartBalance );
